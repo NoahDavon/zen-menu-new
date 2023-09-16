@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-1">
       <Input placeholder='Search for items'/>
       <Tabs variant="soft-rounded">
-        <TabList className='w-full overflow-x-scroll'>
+        <TabList className=' max-w-[100vw] px-3 overflow-x-scroll'>
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
           <Tab>Tab 1</Tab>
