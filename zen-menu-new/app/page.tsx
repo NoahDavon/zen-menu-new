@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import ProductCard from './components/productCard'
 import { Tab, TabList, Tabs, Box, Input } from '@chakra-ui/react'
+import BestSellers from './components/bestSellers'
 
 export default function Home() {
   return (
@@ -22,7 +23,8 @@ export default function Home() {
           <Tab>Tab 2</Tab>
         </TabList>
       </Tabs>
-      <ProductCard menu/>
+      <BestSellers/>
+      
     </main>
   )
 }
