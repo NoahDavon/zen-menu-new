@@ -1,7 +1,4 @@
-import Image from 'next/image'
-import ProductCard from './components/productCard'
-import { Tab, TabList, Tabs, Box, Input } from '@chakra-ui/react'
-import BestSellers from './components/bestSellers'
+import { Tab, TabList, Tabs, Input } from '@chakra-ui/react'
 import Menu from './components/menu'
 
 export default function Home() {

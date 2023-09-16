@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FunctionComponent } from 'react';
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Spacer, Stack, Switch, Text } from '@chakra-ui/react';
+import { Button, Card, Flex, Image, Spacer, Stack, Text } from '@chakra-ui/react';
 interface Props {
     menu?: boolean;
 }
