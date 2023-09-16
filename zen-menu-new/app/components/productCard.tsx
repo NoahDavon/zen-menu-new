@@ -18,8 +18,9 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                 <Button variant="cardButton" className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</Button>           
             </Card>
         </Card> :
-        <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-full'>
+        <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-full max-h-32'>
             <Image src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg' className='w-5/12 object-cover rounded-md'/>
+            <Spacer/>
             <Stack spacing='0.1rem'>
                 <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">Cappuccino</Text>
                 <Text size='sm' className=' text-xs mx-2'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </Text>
