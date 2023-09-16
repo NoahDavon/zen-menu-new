@@ -18,7 +18,7 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                 <Button variant="cardButton" className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</Button>           
             </Card>
         </Card> :
-        <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-96 max-h-32'>
+        <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-full my-3 max-h-32'>
             <Image src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg' className='w-5/12 object-cover rounded-md'/>
             <Spacer/>
             <Stack spacing='0.1rem'>
