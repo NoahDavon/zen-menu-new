@@ -2,6 +2,7 @@
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton } from '@chakra-ui/react'
 import React from 'react'
+import Option from './option';
 
 type Props = {}
 
@@ -23,6 +24,7 @@ export default function ProductDetails({}: Props) {
                 <Text className='text-center m-4'>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur facilis placeat, incidunt distinctio sint minus corrupti nemo architecto cupiditate eligendi doloribus. Aperiam veritatis laborum minus nec
                 </Text>
+                <Option options={["milk", "no milk", "no milk", "no milk", "no milk", "no milk", "no milk"]}/>
             </ModalBody>
         </ModalContent>
     </Modal>
