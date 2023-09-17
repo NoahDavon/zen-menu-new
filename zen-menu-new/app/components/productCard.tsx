@@ -22,13 +22,13 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
             <Image src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg' className='w-3/12 object-cover rounded-md shrink-0'/>
             <Spacer/>
             <Stack spacing='0.1rem'>
-                <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">Cappuccino</Text>
-                <Text noOfLines={2} size='sm' className=' text-xs mx-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ducimus perspiciatis laudantium. Cum, impedit alias. Aperiam id, fugit explicabo totam deserunt quaerat expedita accusantium dignissimos minus, impedit vero nam ab. </Text>
+                <Text color={"#BC5F00"} className="px-1 text-sm font-normal font-sans ">Cappuccino</Text>
+                <Text noOfLines={1} size='sm' className=' text-xs mx-2 font-sans'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ducimus perspiciatis laudantium. Cum, impedit alias. Aperiam id, fugit explicabo totam deserunt quaerat expedita accusantium dignissimos minus, impedit vero nam ab. </Text>
                 <Spacer/>
                 <Flex className=' items-center'>
-                    <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">50 L.E.</Text>
+                    <Text color={"#BC5F00"} className="px-1 text-sm font-normal font-sans ">50 L.E.</Text>
                     <Spacer/>
-                    <Text variant="cardButton" className=' mx-3 bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold'>Add To Cart</Text>           
+                    <Text variant="cardButton" className=' mx-3 bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold font-sans'>Add To Cart</Text>           
                 </Flex>
             </Stack>
         </Card>

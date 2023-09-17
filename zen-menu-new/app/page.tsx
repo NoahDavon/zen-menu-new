@@ -4,7 +4,7 @@ import ProductDetails from './components/productDetails'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center px-7 pt-10">
+    <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
       <Text size='md m-4 font-normal' className=' self-start'>Good day,</Text>
       <Text className=' self-start mb-4 font-bold text-[#BC5F00]'>Noah</Text>
       <Input placeholder='Search for items'/>

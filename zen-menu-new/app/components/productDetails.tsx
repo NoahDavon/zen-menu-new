@@ -3,6 +3,7 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton } from '@chakra-ui/react'
 import React from 'react'
 import Option from './option';
+import AdditionalNotes from './AdditionalNotes';
 
 type Props = {}
 
@@ -24,7 +25,9 @@ export default function ProductDetails({}: Props) {
                 <Text className='text-center m-4'>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur facilis placeat, incidunt distinctio sint minus corrupti nemo architecto cupiditate eligendi doloribus. Aperiam veritatis laborum minus nec
                 </Text>
-                <Option options={["milk", "no milk", "no milk", "no milk", "no milk", "no milk", "no milk"]}/>
+                <Option def='milk' options={["milk", "no milk"]}/>
+                <AdditionalNotes/>
+                <Button variant='outline' className='m-4'>Add To Cart</Button>
             </ModalBody>
         </ModalContent>
     </Modal>
@@ -36,7 +39,7 @@ type CounterProps = {}
 
 function Counter({}: CounterProps) {
   return (
-    <div className='w-full h-12 flex bg-slate-200 rounded-xl items-center shadow'>
+    <div className='w-full h-12 flex bg-white border border-orange-800 rounded-xl items-center shadow'>
         <Heading size='md' className='font-bold p-4 text-[#BC5F00]'>Cappucino</Heading>
         <Spacer/>
         <Flex className='w-1/3 items-center mx-4'>
