@@ -1,5 +1,6 @@
 import { Tab, TabList, Tabs, Input } from '@chakra-ui/react'
 import Menu from './components/menu'
+import ProductDetails from './components/productDetails'
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
         </TabList>
       </Tabs>
       <Menu/>
-      <div className='flex-shrink h-7'>Hello</div>
+      <ProductDetails/>
     </main>
   )
 }

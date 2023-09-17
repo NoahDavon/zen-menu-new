@@ -14,16 +14,17 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                         <Spacer/>
                         <Text>60 LE</Text>
                 </Flex>
-                <Text size='sm' className='text-xs mx-2'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </Text>
+                <Text noOfLines={3} size='sm' className='text-xs mx-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti beatae ipsam minima placeat, fugiat illo magnam nesciunt saepe nam dolorem odio temporibus tempore aliquid maxime ullam omnis minus harum vitae! </Text>
                 <Button variant="cardButton" className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</Button>           
             </Card>
         </Card> :
         <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-full my-3 max-h-32'>
-            <Image src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg' className='w-5/12 object-cover rounded-md'/>
+            <Image src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg' className='w-3/12 object-cover rounded-md shrink-0'/>
             <Spacer/>
             <Stack spacing='0.1rem'>
                 <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">Cappuccino</Text>
-                <Text size='sm' className=' text-xs mx-2'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </Text>
+                <Text noOfLines={2} size='sm' className=' text-xs mx-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ducimus perspiciatis laudantium. Cum, impedit alias. Aperiam id, fugit explicabo totam deserunt quaerat expedita accusantium dignissimos minus, impedit vero nam ab. </Text>
+                <Spacer/>
                 <Flex className=' items-center'>
                     <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">50 L.E.</Text>
                     <Spacer/>
