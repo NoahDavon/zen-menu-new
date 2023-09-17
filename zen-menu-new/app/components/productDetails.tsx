@@ -1,6 +1,6 @@
 'use client'
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
-import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton } from '@chakra-ui/react'
+import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton, Stack } from '@chakra-ui/react'
 import React from 'react'
 import Option from './option';
 import AdditionalNotes from './AdditionalNotes';
@@ -21,13 +21,15 @@ export default function ProductDetails({}: Props) {
                 <Image className='rounded-2xl' src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'/>
             </ModalHeader>
             <ModalBody>
+              <Stack>
                 <Counter/>
-                <Text className='text-center m-4'>
+                <Text className='text-center'>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur facilis placeat, incidunt distinctio sint minus corrupti nemo architecto cupiditate eligendi doloribus. Aperiam veritatis laborum minus nec
                 </Text>
-                <Option def='milk' options={["milk", "no milk"]}/>
+                <Option isOption options={["milk", "no milk"]}/>
                 <AdditionalNotes/>
-                <Button variant='outline' className='m-4'>Add To Cart</Button>
+                <Button variant='outline'>Add To Cart</Button>
+              </Stack>
             </ModalBody>
         </ModalContent>
     </Modal>

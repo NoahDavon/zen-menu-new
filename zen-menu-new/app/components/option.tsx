@@ -4,14 +4,14 @@ import SelectButton from './selectButton';
 
 type Props = {
     options: string[];
-    def?: string;
+    isOption?: Boolean;
 }
 
 
-export default function Option({options, def = ''}: Props) {
-    const [selected, setSelected] = useState<{[key: string]: Boolean}>(def === ''? {} : {[def]: true});
+export default function Option({options, isOption=false}: Props) {
+    const [selected, setSelected] = useState<{[key: string]: Boolean}>(!isOption? {} : {[options[0]]: true});
     const handleClick = (x: string) => {
-        def!==''? setSelected({[x]:(true)}):setSelected({...selected, [x]: (!selected[x]??true)})
+        isOption? setSelected({[x]:(true)}):setSelected({...selected, [x]: (!selected[x]??true)})
     }
   return (
     <>
