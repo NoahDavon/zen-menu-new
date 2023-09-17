@@ -1,5 +1,6 @@
 'use client'
-import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
+import { AddIcon, MinusIcon } from '@chakra-ui/icons';
+import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton } from '@chakra-ui/react'
 import React from 'react'
 
 type Props = {}
@@ -18,13 +19,29 @@ export default function ProductDetails({}: Props) {
                 <Image className='rounded-2xl' src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'/>
             </ModalHeader>
             <ModalBody>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde eos iusto pariatur, odit commodi ad odio quae a atque nulla, distinctio ratione! Repudiandae excepturi eveniet voluptas recusandae dignissimos facere autem.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod molestiae porro facere! Eius, enim culpa. Adipisci facere in, rerum neque voluptates officia omnis alias. Facere laborum sit perferendis vitae quidem.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nam corporis. Impedit, magnam dolorum culpa mollitia est voluptatum consequuntur nisi neque odio officiis molestiae in voluptates. Placeat magnam commodi impedit!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam pariatur eius, odit natus dolor accusantium asperiores quidem obcaecati neque sequi nihil voluptatem officia eligendi reprehenderit maiores, inventore esse tempora nesciunt!
+                <Counter/>
+                <Text className='text-center m-4'>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur facilis placeat, incidunt distinctio sint minus corrupti nemo architecto cupiditate eligendi doloribus. Aperiam veritatis laborum minus nec
+                </Text>
             </ModalBody>
         </ModalContent>
     </Modal>
     </>
+  )
+}
+
+type CounterProps = {}
+
+function Counter({}: CounterProps) {
+  return (
+    <div className='w-full h-12 flex bg-slate-200 rounded-xl items-center shadow'>
+        <Heading size='md' className='font-bold p-4 text-[#BC5F00]'>Cappucino</Heading>
+        <Spacer/>
+        <Flex className='w-1/3 items-center mx-4'>
+            <IconButton icon={<MinusIcon/>} aria-label='remove' className='rounded-full text-[#BC5F00]'/>
+            <Text className='px-4'>3</Text>
+            <IconButton icon={<AddIcon/>} aria-label='add' className='rounded-full text-[#BC5F00]'/>
+        </Flex>
+    </div>
   )
 }

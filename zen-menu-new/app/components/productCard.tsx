@@ -7,14 +7,14 @@ interface Props {
  
 const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
     return ( 
-        !menu?<Card className=" mx-7 my-2 rounded-2xl justify-end flex-shrink-0 w-52 h-80 bg-cover bg-center" backgroundImage='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'>
+        !menu?<Card className=" mx-4 my-4 rounded-2xl justify-end flex-shrink-0 w-52 h-80 bg-cover bg-center" backgroundImage='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'>
             <Card className="text-black bg-white font-sans items-center rounded-2xl">
                 <Flex color={"#BC5F00"} className="px-2 pt-2 text-base font-normal w-[100%]">
                         <Text>Cappuccino</Text>
                         <Spacer/>
                         <Text>60 LE</Text>
                 </Flex>
-                <Text noOfLines={3} size='sm' className='text-xs mx-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti beatae ipsam minima placeat, fugiat illo magnam nesciunt saepe nam dolorem odio temporibus tempore aliquid maxime ullam omnis minus harum vitae! </Text>
+                <Text noOfLines={2} size='sm' className='text-xs mx-2 text-left'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti beatae ipsam minima placeat, fugiat illo magnam nesciunt saepe nam dolorem odio temporibus tempore aliquid maxime ullam omnis minus harum vitae! </Text>
                 <Button variant="cardButton" className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</Button>           
             </Card>
         </Card> :
@@ -28,7 +28,7 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                 <Flex className=' items-center'>
                     <Text color={"#BC5F00"} className="px-1 text-sm font-normal ">50 L.E.</Text>
                     <Spacer/>
-                    <Text variant="cardButton" className='bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold'>Add To Cart</Text>           
+                    <Text variant="cardButton" className=' mx-3 bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold'>Add To Cart</Text>           
                 </Flex>
             </Stack>
         </Card>
