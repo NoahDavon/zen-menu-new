@@ -8,7 +8,7 @@ export default function Home() {
       <Text size='md m-4 font-normal' className=' self-start'>Good day,</Text>
       <Text className=' self-start mb-4 font-bold text-[#BC5F00]'>Noah</Text>
       <Input placeholder='Search for items'/>
-      <Tabs variant="soft-rounded">
+      <Tabs variant="soft-rounded" colorScheme='orange'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4'>
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
