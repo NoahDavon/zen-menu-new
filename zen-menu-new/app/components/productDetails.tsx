@@ -1,17 +1,14 @@
 'use client'
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
-import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, useDisclosure, Text, Heading, Spacer, Flex, IconButton, Stack } from '@chakra-ui/react'
+import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHeader, ModalOverlay, Text, Heading, Spacer, Flex, IconButton, Stack } from '@chakra-ui/react'
 import React from 'react'
 import Option from './option';
 import AdditionalNotes from './AdditionalNotes';
 
-type Props = {}
-
-export default function ProductDetails({}: Props) {
-    const {onOpen, isOpen, onClose} = useDisclosure();
+export default function ProductDetails(props: any) {
+    const {onOpen, isOpen, onClose} = props;
   return (
     <>
-    <Button onClick={onOpen}>Modal</Button>
     <Modal size='full' isOpen={isOpen} onClose={onClose}>
         <ModalOverlay/>
         <ModalContent>

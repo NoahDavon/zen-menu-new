@@ -1,14 +1,18 @@
 'use client'
 import React from 'react'
-import { CloseButton, IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading } from '@chakra-ui/react'
+import { CloseButton, IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading, Avatar, AvatarBadge } from '@chakra-ui/react'
 import {HiOutlineShoppingCart} from 'react-icons/hi2';
 import CartCard from './CartCard';
 export default function Cart() {
     const {isOpen, onOpen, onClose} = useDisclosure();
   return (
     <div className='flex h-full'>
-        <IconButton onClick={onOpen} variant='outline' fontSize='30px' colorScheme='orange' aria-label='Cart' icon={<HiOutlineShoppingCart/>}/>
-        <div className='self-start rounded-full text-xs border border-orange-300 font-semibold text-orange-600 h-fit p-1 aspect-square'>3</div>
+        <IconButton onClick={onOpen} variant='ghost' aria-label='Cart' icon={
+            <Avatar bg='orange.500' icon={<HiOutlineShoppingCart/>}>
+                <AvatarBadge bg='orange.300' boxSize='1.25rem' fontSize='sm'>3</AvatarBadge>
+            </Avatar>
+        }/>
+        {/* <div className='self-start rounded-full text-xs border border-orange-300 font-semibold text-orange-600 h-fit p-1 aspect-square'>3</div> */}
         <Modal size='full' isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent>
