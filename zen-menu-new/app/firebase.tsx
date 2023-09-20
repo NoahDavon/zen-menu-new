@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
+import { collection, doc, getDocs, getFirestore, orderBy, query, setDoc } from "firebase/firestore"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -34,4 +35,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const analytics = getAnalytics(app);
+export async function getCategories(): Promise<string[]>{
+  const ref = collection(getFirestore(app), 'Categories');
+  const q = query(ref, orderBy('index'))
+  const docs = await getDocs(q)
+  var ret: string[] = [];
+  docs.forEach(doc => ret.push(doc.id))
+  return ret;
+}
