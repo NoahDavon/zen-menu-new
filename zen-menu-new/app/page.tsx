@@ -4,6 +4,7 @@ import ProductDetails from './components/productDetails'
 import Header from './components/Header'
 
 export default function Home() {
+  
   return (
     <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
       <Header/>
