@@ -18,7 +18,7 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                         <Text>60 LE</Text>
                 </Flex>
                 <Text noOfLines={2} size='sm' className='text-xs mx-2 text-left'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti beatae ipsam minima placeat, fugiat illo magnam nesciunt saepe nam dolorem odio temporibus tempore aliquid maxime ullam omnis minus harum vitae! </Text>
-                <button className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</button>           
+                <button onClick={onOpen} className='bg-[#663300] text-white rounded-lg p-2 shadow-lg m-1 text-sm font-bold'>Add To Cart</button>           
             </Card>
         </Card> :
         <Card flexDirection='row' className='rounded-2xl aspect-[4/1] w-full my-3 max-h-32'>
@@ -31,7 +31,7 @@ const ProductCard: FunctionComponent<Props> = ({menu = false}) => {
                 <Flex className=' items-center'>
                     <Text color={"#BC5F00"} className="px-1 text-sm font-normal font-sans ">50 L.E.</Text>
                     <Spacer/>
-                    <button className=' mx-3 bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold font-sans'>Add To Cart</button>           
+                    <button onClick={onOpen} className=' mx-3 bg-[#663300] text-white rounded p-1 shadow-lg m-1 text-xs font-semibold font-sans'>Add To Cart</button>           
                 </Flex>
             </Stack>
         </Card>}
