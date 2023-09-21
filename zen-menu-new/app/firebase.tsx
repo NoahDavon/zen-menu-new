@@ -60,8 +60,7 @@ export async function getAdditions(Item:Item) {
   var ret: Option[] = [];
   const promises: Promise<void>[] = Item.Additions?.map(async (addition): Promise<void> =>{
     const q = query(ref, where('Name', '==', addition))
-    const docs = await getDocs(q)
-    docs.forEach(doc => ret.push(doc.data() as Option))
+    getDocs(q).then((docs) =>docs.forEach(doc => ret.push(doc.data() as Option)))
   }) as Promise<void>[]
   await Promise.all<Promise<void>>(promises)
   
