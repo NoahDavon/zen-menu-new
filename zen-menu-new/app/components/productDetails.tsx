@@ -10,8 +10,13 @@ interface Option{
   Options: {[key:string]: number},
   isOption?:boolean
 }
-export default function ProductDetails(props: Item) {
-    const {onOpen, isOpen, onClose} = props;
+type Props = {
+  onOpen: ()=> void,
+  onClose: () => void,
+  isOpen: boolean,
+  Item?: Item
+}
+export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
   return (
     <>
     <Modal size='full' isOpen={isOpen} onClose={onClose}>
