@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
-import { collection, doc, getDocs, getFirestore, orderBy, query, setDoc } from "firebase/firestore"; 
+import { collection, doc, getDocs, getFirestore, orderBy, query, setDoc, where } from "firebase/firestore"; 
+import { Item } from "./components/menu";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -41,5 +42,14 @@ export async function getCategories(): Promise<string[]>{
   const docs = await getDocs(q)
   var ret: string[] = [];
   docs.forEach(doc => ret.push(doc.id))
+  return ret;
+}
+
+export async function getItems(category: string) : Promise<Item[]>{
+  const ref = collection(getFirestore(app), 'Items');
+  const q = query(ref, where('Category', '==', category))
+  const docs = await getDocs(q)
+  var ret: Item[] = [];
+  docs.forEach(doc => ret.push(doc.data() as Item))
   return ret;
 }

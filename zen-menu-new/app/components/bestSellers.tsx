@@ -9,7 +9,7 @@ type Props = {
 export default function BestSellers({}: Props) {
   return (
     <div className='w-full'>
-        <Heading size='md'>Best Sellers</Heading>
+        {/* <Heading size='md'>Best Sellers</Heading>
         <Box className='flex flex-row w-full overflow-x-scroll'>
             <ProductCard/>
             <ProductCard/>
@@ -19,7 +19,7 @@ export default function BestSellers({}: Props) {
             <ProductCard/>
             <ProductCard/>
             <ProductCard/>
-        </Box>
+        </Box> */}
     </div>
   )
 }
