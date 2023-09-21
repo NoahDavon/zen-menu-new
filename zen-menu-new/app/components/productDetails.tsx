@@ -5,7 +5,7 @@ import React from 'react'
 import Option from './option';
 import AdditionalNotes from './AdditionalNotes';
 import { Item } from './menu';
-interface Option{
+export interface Option{
   Name: string,
   Options: {[key:string]: number},
   isOption?:boolean

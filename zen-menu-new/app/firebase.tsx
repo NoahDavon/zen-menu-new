@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { collection, doc, getDocs, getFirestore, orderBy, query, setDoc, where } from "firebase/firestore"; 
 import { Item } from "./components/menu";
+import { Option } from "./components/productDetails";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -51,5 +52,18 @@ export async function getItems(category: string) : Promise<Item[]>{
   const docs = await getDocs(q)
   var ret: Item[] = [];
   docs.forEach(doc => ret.push(doc.data() as Item))
+  return ret;
+}
+
+export async function getAdditions(Item:Item) {
+  const ref = collection(getFirestore(app), 'Additions');
+  var ret: Option[] = [];
+  const promises: Promise<void>[] = Item.Additions?.map(async (addition): Promise<void> =>{
+    const q = query(ref, where('Name', '==', addition))
+    const docs = await getDocs(q)
+    docs.forEach(doc => ret.push(doc.data() as Option))
+  }) as Promise<void>[]
+  await Promise.all<Promise<void>>(promises)
+  
   return ret;
 }
