@@ -1,5 +1,5 @@
 'use client'
-import { Tab, TabList, Tabs, Input, Heading, Text, TabPanels, TabPanel } from '@chakra-ui/react'
+import { Tab, TabList, Tabs, TabPanels, TabPanel, Skeleton, Box, SkeletonText, SkeletonCircle } from '@chakra-ui/react'
 import Menu from './components/menu'
 import ProductDetails from './components/productDetails'
 import Header from './components/Header'
@@ -20,11 +20,26 @@ export default function Home() {
         </TabList>
         <TabPanels>
           {categories.map(category =>
-            <TabPanel className='w-11/12'>
+            <TabPanel className='w-11/12 overflow-y-scroll basis-0 flex-grow'>
               <Menu category={category}/>
             </TabPanel>)}
         </TabPanels>
-      </Tabs> : <div></div>}
+      </Tabs> :
+      <div className='w-full overflow-y-scroll basis-0 flex-grow'>
+        {[...Array(10)].map(()=> <LoadingBox/>)}
+      </div>
+            
+          }
     </main>
+  )
+}
+
+
+function LoadingBox() {
+  return (
+    <Box className='my-3 w-full h-24 border shadow p-2 rounded-lg flex'>
+      <Skeleton className='h-full w-1/4 flex-shrink-0 rounded-xl'></Skeleton>
+      <SkeletonText noOfLines={3} className='h-full m-4 flex-shrink w-full'/>
+    </Box>
   )
 }

@@ -4,8 +4,13 @@ import { Button, Image, Modal, ModalCloseButton, ModalContent,ModalBody, ModalHe
 import React from 'react'
 import Option from './option';
 import AdditionalNotes from './AdditionalNotes';
-
-export default function ProductDetails(props: any) {
+import { Item } from './menu';
+interface Option{
+  Name: string,
+  Options: {[key:string]: number},
+  isOption?:boolean
+}
+export default function ProductDetails(props: Item) {
     const {onOpen, isOpen, onClose} = props;
   return (
     <>
