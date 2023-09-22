@@ -1,7 +1,6 @@
 'use client'
 import { Tab, TabList, Tabs, TabPanels, TabPanel, Skeleton, Box, SkeletonText, SkeletonCircle } from '@chakra-ui/react'
 import Menu from './components/menu'
-import ProductDetails from './components/productDetails'
 import Header from './components/Header'
 import {getCategories} from './firebase';
 import { useEffect, useState } from 'react'
@@ -11,6 +10,7 @@ export default function Home() {
     getCategories().then(categories => setCategories(categories))
   },[]);
   return (
+
     <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
       <Header/>
       {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className='h-[100vh]'>
