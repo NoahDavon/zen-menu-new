@@ -14,7 +14,7 @@ export default function Cart() {
   return (
     <div className='flex h-full'>
         <IconButton onClick={onOpen} variant='ghost' aria-label='Cart' icon={
-            <Avatar bg='orange.500' icon={<HiOutlineShoppingCart/>}>
+            <Avatar className='shadow-md' bg='orange.500' icon={<HiOutlineShoppingCart/>}>
                 {!isEmpty?<AvatarBadge bg='orange.300' boxSize='1.25rem' fontSize='sm'>{totalItems}</AvatarBadge>:<></>}
             </Avatar>
         }/>
