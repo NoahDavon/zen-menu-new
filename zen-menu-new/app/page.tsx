@@ -4,13 +4,14 @@ import Menu from './components/menu'
 import Header from './components/Header'
 import {getCategories} from './firebase';
 import { useEffect, useState } from 'react'
+import { CartProvider } from 'react-use-cart';
 export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(()=>{
     getCategories().then(categories => setCategories(categories))
   },[]);
   return (
-
+    <CartProvider>
     <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
       <Header/>
       {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className='h-[100vh]'>
@@ -31,6 +32,7 @@ export default function Home() {
             
           }
     </main>
+    </CartProvider>
   )
 }
 

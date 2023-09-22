@@ -1,12 +1,14 @@
 import { Heading, Textarea } from '@chakra-ui/react'
 import React from 'react'
 
-type Props = {}
+type Props = {
+  handleNotes: (e: any) => void
+}
 
-export default function AdditionalNotes({}: Props) {
+export default function AdditionalNotes({handleNotes}: Props) {
   return (
     <div>
-        <Textarea placeholder='Any additional notes/requests?'/>
+        <Textarea onChange={handleNotes} placeholder='Any additional notes/requests?'/>
     </div>
   )
 }

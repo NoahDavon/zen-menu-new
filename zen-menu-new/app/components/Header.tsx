@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Text, Input, Flex, Stack, Spacer} from '@chakra-ui/react'
 import Cart from './Cart'
+import { useCart } from 'react-use-cart'
 export default function Header() {
+  const {emptyCart} = useCart();
+  useEffect(()=>{ return emptyCart()},[])
   return (
     <div className='w-full'>
         <Flex className='items-center'>
