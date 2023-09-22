@@ -17,7 +17,7 @@ export default function Option({Name, options, isOption=false}: Props) {
   return (
     <>
     <Heading size='sm'>{Name}</Heading>
-    <Flex className=' flex-wrap justify-between items-center '>
+    <Flex className=' flex-wrap items-center '>
         {Object.keys(options).map((x)=>{return(
             <SelectButton onClick={()=> {handleClick(x)}} highlighted={(selected[x]??false)} name={x}/>
         )})}

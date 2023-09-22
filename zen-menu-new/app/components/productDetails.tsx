@@ -15,7 +15,7 @@ type Props = {
   onOpen: ()=> void,
   onClose: () => void,
   isOpen: boolean,
-  Item?: Item
+  Item: Item
 }
 export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
   function Counter({}) {
@@ -32,7 +32,9 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
     )
   }
   const [additions, setAdditions] = useState<Option[]>([]);
-  useEffect(()=>{getAdditions(Item as Item).then((adds)=> setAdditions(adds))},[])
+  useEffect(()=>{
+    if(Item.Additions)getAdditions(Item as Item).then(adds => setAdditions(adds))
+  },[])
   return (
     <>
     <Modal size='full' isOpen={isOpen} onClose={onClose}>

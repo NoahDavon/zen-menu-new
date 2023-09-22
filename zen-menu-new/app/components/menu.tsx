@@ -23,7 +23,7 @@ export default function Menu({category}: Props) {
     getItems(category).then((items) => {setItems(items)})
   }, [])
   return (
-    <Box className='flex items-center flex-col overflow-y-scroll w-full flex-grow basis-0 mx-3'>
+    <Box className='flex items-center flex-col overflow-x-clip w-full mx-3'>
         <BestSellers/>
         {items.map(item => 
           <ProductCard item={item} menu/>
