@@ -1,5 +1,5 @@
 'use client'
-import { Tab, TabList, Tabs, TabPanels, TabPanel, Skeleton, Box, SkeletonText, SkeletonCircle } from '@chakra-ui/react'
+import {Text, Image, Tab, TabList, Tabs, TabPanels, TabPanel, Skeleton, Box, SkeletonText,Modal, ModalOverlay, ModalContent, ModalBody, useDisclosure, Input, Button } from '@chakra-ui/react'
 import Menu from './components/menu'
 import Header from './components/Header'
 import {getCategories} from './firebase';
@@ -8,12 +8,26 @@ import { CartProvider } from 'react-use-cart';
 export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(()=>{
+    onOpen();
     getCategories().then(categories => setCategories(categories))
   },[]);
+  const [name, setName] = useState('');
+  const {isOpen, onOpen, onClose} = useDisclosure();
   return (
     <CartProvider>
     <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
-      <Header/>
+      <Modal size='6xl' isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} closeOnEsc={false}>
+        <ModalOverlay/>
+        <ModalContent>
+          <ModalBody backgroundImage='Rectangle.png' className='flex flex-col w-full items-center bg-cover bg-center justify-evenly grow-0'>
+            <Image src='zen.png' className=' h-80 w-80'/>
+            <Text className='font-sans'>Please enter your name:</Text>
+            <Input onChange={(e)=> {setName(e.target.value)}} focusBorderColor='orange.300' fontFamily='sans-serif'/>
+            <Button className='my-2' onClick={onClose} isDisabled={name===''} variant='outline' colorScheme='orange'>Enter</Button>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <Header name={name}/>
       {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className='h-[100vh]'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4'>
           {categories.map(category =>
