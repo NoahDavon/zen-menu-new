@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
-import { collection, doc, getDocs, getFirestore, orderBy, query, setDoc, where } from "firebase/firestore"; 
+import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"; 
 import { Item } from "./components/menu";
 import { Option } from "./components/productDetails";
+import { Order } from "./orders/page";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -66,4 +67,20 @@ export async function getAdditions(Item:Item) {
   await Promise.all(promises);
   
   return ret;
+}
+
+export function setOrder(order: {Name: string, items: any[], total: number}){
+  addDoc(collection(getFirestore(app), 'Orders'), order)
+}
+
+export function unSubscribeToDB(setter: React.Dispatch<React.SetStateAction<Order[]>>){
+  return onSnapshot(collection(getFirestore(app), 'Orders'), snapshot =>{
+    var orders : Order[] = [];
+    snapshot.forEach((doc)=> orders.push({...doc.data(),id: doc.id} as Order));
+    setter(orders);
+  })
+}
+
+export function removeItem(id: string){
+  deleteDoc(doc(getFirestore(app), 'Orders/' + id));
 }

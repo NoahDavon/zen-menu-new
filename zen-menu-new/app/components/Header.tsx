@@ -6,8 +6,11 @@ type Props = {
   name : string
 }
 export default function Header({name} : Props) {
-  const {emptyCart} = useCart();
+  const {emptyCart, updateCartMetadata} = useCart();
   useEffect(()=>{ return emptyCart()},[])
+  useEffect(()=>{
+    updateCartMetadata({Name: name})
+  }, [name])
   return (
     <div className='w-full'>
         <Flex className='items-center'>
