@@ -86,6 +86,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
                     id += notes
                     var cartItem : cartItem = {id: id, Name: Item.Name, Options:ops ??[], price: finalPrice, Notes: notes}
                     addItem(cartItem, count);
+                    setSelectedOptions([] as {});
                     onClose();
                   }}variant='outline' colorScheme='orange' className='font-sans'>Add To Cart</Button>
               </Stack>
