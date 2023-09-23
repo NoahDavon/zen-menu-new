@@ -32,7 +32,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
   const [count, setCount] = useState(1);
   function Counter({}) {
     return (
-      <div className='w-full h-12 flex bg-white border border-orange-800 rounded-xl items-center shadow'>
+      <div className='w-full h-12 flex bg-white border border-orange-800 rounded-xl items-center shadow p-1'>
           <Heading size='md' className='font-bold p-4 text-[#BC5F00]'>{Item.Name}</Heading>
           <Spacer/>
           <Flex className='w-1/3 items-center mx-4'>

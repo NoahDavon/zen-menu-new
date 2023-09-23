@@ -15,7 +15,7 @@ export default function Home() {
   const {isOpen, onOpen, onClose} = useDisclosure();
   return (
     <CartProvider>
-    <main className="flex min-h-screen flex-col items-center px-7 pt-10 font-sans">
+    <main className="flex h-[100vh] flex-col items-center px-7 pt-10 font-sans overflow-x-clip">
       <Modal size='6xl' isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} closeOnEsc={false}>
         <ModalOverlay/>
         <ModalContent>
@@ -28,14 +28,14 @@ export default function Home() {
         </ModalContent>
       </Modal>
       <Header name={name}/>
-      {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className='h-[100vh]'>
+      {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4'>
           {categories.map(category =>
             <Tab fontSize='xs' className=' border flex-shrink-0 border-orange-200 m-0.5 shadow text-xs'>{category}</Tab>)}
         </TabList>
-        <TabPanels className='flex flex-col flex-grow h-full'>
+        <TabPanels className='flex flex-col flex-grow h-full overflow-x-clip items-center'>
           {categories.map(category =>
-            <TabPanel className='w-11/12 overflow-y-scroll h-full flex flex-col'>
+            <TabPanel className='w-11/12 overflow-y-scroll h-full flex flex-col overflow-x-clip items-center'>
               <Menu category={category}/>
             </TabPanel>)}
         </TabPanels>

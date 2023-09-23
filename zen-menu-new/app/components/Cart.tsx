@@ -1,12 +1,13 @@
 'use client'
 import React, { useEffect } from 'react'
-import { IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading, Avatar, AvatarBadge } from '@chakra-ui/react'
+import { IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading, Avatar, AvatarBadge, useToast } from '@chakra-ui/react'
 import {HiOutlineShoppingCart} from 'react-icons/hi2';
 import CartCard from './CartCard';
 import { useCart } from 'react-use-cart';
 import { cartItem } from './productDetails';
 export default function Cart() {
-    const {totalItems, isEmpty, cartTotal, items} = useCart()
+    const toast = useToast();
+    const {totalItems, isEmpty, cartTotal, items, emptyCart} = useCart()
     const {isOpen, onOpen, onClose} = useDisclosure();
     useEffect(()=>{
         if(isEmpty) onClose;
@@ -29,7 +30,17 @@ export default function Cart() {
                         {items.map((item)=> <CartCard item={item as cartItem}/>)}
                     </Stack>
                     <Heading size='xs' className='p-4 self-end'>Total price: {cartTotal} EGP</Heading>
-                    <button className='p-2 m-2 font-sans font-semibold shadow bg-orange-700 hover:bg-orange-400 text-white rounded-md'>Finish Order</button>
+                    <button className='p-2 m-2 font-sans font-semibold shadow bg-orange-700 hover:bg-orange-400 text-white rounded-md' onClick={()=>{
+                        emptyCart();
+                        toast({
+                            title: "Order taken!",
+                            description: `Your order total is ${cartTotal}, kindly proceed to the counter to complete payment`,
+                            duration: 10000,
+                            isClosable: true,
+                            colorScheme: 'orange',
+                            position: 'top'
+                        })
+                    }}>Finish Order</button>
                 </ModalBody>
             </ModalContent>
         </Modal>
