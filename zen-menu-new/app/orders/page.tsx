@@ -22,7 +22,7 @@ export default function Orders({}: Props) {
     <Flex className=' flex-wrap'>
         {orders?.map(order=>
             <div className='p-4 border'><div className=''>{order.Name}</div><div>{order.items?.map(item => 
-            <div>{`${item.Name} x${item.quantity}, ${item.Options.map(option=> `+${option} `)}, ${item.Notes}`}</div>)}</div><Button onClick={()=>{
+            <div>{`${item.Name} x${item.quantity}, ${item.Options.map(option=> `+${option} `)}, ${item.Notes}`}</div>)}<div>{order.total} EGP</div></div><Button onClick={()=>{
                 removeItem(order.id)
             }}>Close</Button></div>)}
     </Flex>
