@@ -21,7 +21,7 @@ export default function Header({name} : Props) {
             <Spacer/>
             <Cart/>
         </Flex>
-        <Input placeholder='Search for items'/>
+        {/* <Input placeholder='Search for items'/> */}
     </div>
   )
 }
