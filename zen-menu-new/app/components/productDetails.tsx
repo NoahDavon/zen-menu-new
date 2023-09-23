@@ -35,7 +35,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
       <div className='w-full h-12 flex bg-white border border-orange-800 rounded-xl items-center shadow p-1'>
           <Heading size='md' className='font-bold p-4 text-[#BC5F00]'>{Item.Name}</Heading>
           <Spacer/>
-          <Flex className='w-1/3 items-center mx-4'>
+          <Flex className='w-1/3 items-center mr-6'>
               <IconButton onClick={()=> setCount(Math.max(0,count - 1))} icon={<MinusIcon/>} aria-label='remove' className='rounded-full text-[#BC5F00]'/>
               <Text className='px-4'>{count}</Text>
               <IconButton onClick={()=> setCount(Math.max(0, count + 1))} icon={<AddIcon/>} aria-label='add' className='rounded-full text-[#BC5F00]'/>
@@ -63,7 +63,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
     <Modal size='full' isOpen={isOpen} onClose={onClose}>
         <ModalOverlay/>
         <ModalContent>
-            <ModalCloseButton/>
+            <ModalCloseButton size='lg' className='mt-2'/>
             <ModalHeader className='flex flex-col'>
                 <div className=' basis-10'/>
                 <Image className='rounded-2xl' src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'/>
@@ -71,7 +71,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
             <ModalBody>
               <Stack>
                 <Counter/>
-                <Text className='text-center font-sans'>
+                <Text className='p-4 text-left font-sans w-full'>
                   {Item?.description}
                 </Text>
                 {additions.map((addition)=>
