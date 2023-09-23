@@ -14,7 +14,7 @@ type Props = {
 
 
 export default function Option({Name, options, isOption=false, setSelectedOptions, selectedOptions}: Props) {
-    const [selected, setSelected] = useState<{[key: string]: Boolean}>(!isOption? {} : {[Object.keys(options)[0]]: true});
+    const [selected, setSelected] = useState<{[key: string]: Boolean}>(!isOption? {} : {[Object.keys(options)[Object.keys(options).findIndex(o => options[o]==0)]]: true});
     const handleClick = (x: string) => {
         isOption? setSelected({[x]:(true)}):setSelected({...selected, [x]: (!selected[x]??true)})
     }
@@ -29,7 +29,7 @@ export default function Option({Name, options, isOption=false, setSelectedOption
     },[selected])
   return (
     <>
-    <Heading size='sm'>{Name} <Text fontFamily='sans-serif' fontSize='2xs'>{isOption? "  (Select one)" : "  (Select many)"}</Text></Heading>
+    <Heading size='sm'>{Name} <Text fontFamily='sans-serif' fontSize='2xs'>{isOption? "  (Select one)" : "  (Select one or more)"}</Text></Heading>
     <Flex className=' flex-wrap items-center '>
         {Object.keys(options).map((x)=>{return(
             <SelectButton onClick={()=> {handleClick(x)}} highlighted={(selected[x]??false)} name={x}/>
