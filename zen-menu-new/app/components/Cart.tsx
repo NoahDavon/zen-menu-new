@@ -8,7 +8,7 @@ import { cartItem } from './productDetails';
 import { setOrder } from '../firebase';
 export default function Cart() {
     const toast = useToast();
-    const {totalItems, isEmpty, cartTotal, items, emptyCart, metadata} = useCart()
+    const {totalItems, isEmpty, cartTotal, items, emptyCart, metadata, updateCartMetadata} = useCart()
     const {isOpen, onOpen, onClose} = useDisclosure();
     useEffect(()=>{
         if(isEmpty) onClose;
@@ -33,7 +33,9 @@ export default function Cart() {
                     <Heading size='xs' className='p-4 self-end'>Total price: {cartTotal} EGP</Heading>
                     <button className='p-2 m-2 font-sans font-semibold shadow bg-orange-700 hover:bg-orange-400 text-white rounded-md' onClick={()=>{
                         setOrder({Name: metadata?.Name as string, items: items, total: cartTotal})
+                        var name = metadata?.Name
                         emptyCart();
+                        updateCartMetadata({Name: name})
                         toast({
                             title: "Order taken!",
                             description: `Your order total is ${cartTotal} EGP, kindly proceed to the counter to complete payment`,
