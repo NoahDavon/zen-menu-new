@@ -1,11 +1,13 @@
 'use client'
 import {Text, Image, Tab, TabList, Tabs, TabPanels, TabPanel, Skeleton, Box, SkeletonText,Modal, ModalOverlay, ModalContent, ModalBody, useDisclosure, Input, Button } from '@chakra-ui/react'
-import Menu from './components/menu'
+import Menu, { Item } from './components/menu'
 import Header from './components/Header'
 import {getCategories} from './firebase';
 import { useEffect, useState } from 'react'
 import { CartProvider } from 'react-use-cart';
+import SearchBar from './components/SearchBar';
 export default function Home() {
+  const [searchResults, setSearchResults] = useState<Item[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(()=>{
     onOpen();
@@ -28,7 +30,8 @@ export default function Home() {
         </ModalContent>
       </Modal>
       <Header name={name}/>
-      {categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
+      <SearchBar setSearchResults={setSearchResults}/>
+      {searchResults.length===0?categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4 mb-0'>
           {categories.map(category =>
             <Tab fontSize='xs' className=' border flex-shrink-0 border-orange-200 m-0.5 shadow text-xs'>{category}</Tab>)}
@@ -42,7 +45,8 @@ export default function Home() {
       </Tabs> :
       <div className='w-full overflow-y-scroll basis-0 flex-grow'>
         {[...Array(10)].map(()=> <LoadingBox/>)}
-      </div>
+      </div>  :
+      <Menu searchItems={searchResults}/>
             
           }
     </main>

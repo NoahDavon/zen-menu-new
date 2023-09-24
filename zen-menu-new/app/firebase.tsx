@@ -56,12 +56,18 @@ export async function getItems(category: string) : Promise<Item[]>{
   return ret;
 }
 
+export async function getAllItems() : Promise<Item[]>{
+  const ref = collection(getFirestore(app), 'Items');
+  const docs = await getDocs(ref);
+  var ret: Item[] = [];
+  docs.forEach(doc => ret.push(doc.data() as Item))
+  return ret;
+}
 export async function getAdditions(Item:Item) {
   const ref = collection(getFirestore(app), 'Additions');
   var ret: Option[] = []
   const promises =(Item.Additions as string[]).map(async (addition)=>{
     const q = query(ref, where('Name', '==', addition))
-    console.log(addition)
     await getDocs(q).then((docs) =>docs.forEach(doc => ret.push(doc.data() as Option)));
   })
   await Promise.all(promises);

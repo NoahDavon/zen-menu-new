@@ -15,7 +15,6 @@ export default function Orders({}: Props) {
     const [orders, setOrders] = useState<Order[]>([]);
     useEffect(()=>{
         var unsub = unSubscribeToDB(setOrders);
-        console.log(orders);
         return unsub;
     },[])
   return (

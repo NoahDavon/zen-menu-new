@@ -6,7 +6,8 @@ import BestSellers from './bestSellers'
 import { getItems } from '../firebase'
 
 type Props = {
-  category: string
+  category?: string
+  searchItems?: Item[];
 }
 
 export interface Item {
@@ -17,11 +18,13 @@ export interface Item {
   Additions?: string[]
 }
 
-export default function Menu({category}: Props) {
+export default function Menu({category, searchItems}: Props) {
   const [items, setItems] = useState<Item[]>([]);
   useEffect(()=>{
-    getItems(category).then((items) => {setItems(items)})
-  }, [])
+    if(!category) setItems(searchItems?? []);
+    else 
+    {getItems(category).then((items) => {setItems(items)})}
+  }, [searchItems])
   return (
     <Box className='flex items-center flex-col overflow-x-clip w-full mx-3'>
         <BestSellers/>
