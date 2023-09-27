@@ -11,7 +11,7 @@ export default function Items({}: Props) {
     const [Items, setItems] = useState<string[]>([])
     useEffect(()=>{
         getAllItems().then(i => {setItems(i.map(x => x.Name))})
-    })
+    },[])
   return (
     <Stack spacing='10'>{Items.map(i => <ItemAvailability ItemName={i}/>)}</Stack>
   )
