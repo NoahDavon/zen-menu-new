@@ -14,7 +14,7 @@ export default function SearchBar({setSearchResults}: Props) {
     const [allItems, setAllItems] = useState<Item[]>([]);
     useEffect(()=>{
         getAllItems().then((i)=> setAllItems(i));
-    })
+    }, [])
     const options = {
         includeScores: "true",
         keys: ["Name", "Category", "description"]
