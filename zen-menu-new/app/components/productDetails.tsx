@@ -66,7 +66,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
             <ModalCloseButton size='lg' className='mt-2'/>
             <ModalHeader className='flex flex-col'>
                 <div className=' basis-10'/>
-                <Image className='rounded-2xl' src='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'/>
+                <Image className='rounded-2xl' src={`/ProductImages/${Item.Name}.jpg`}/>
             </ModalHeader>
             <ModalBody>
               <Stack>

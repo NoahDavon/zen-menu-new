@@ -49,7 +49,7 @@ export async function getCategories(): Promise<string[]>{
 
 export async function getItems(category: string) : Promise<Item[]>{
   const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('Category', '==', category), where("isAvailable", '==', 'true'))
+  const q = query(ref, where('Category', '==', category), where('isAvailable', '==', true))
   const docs = await getDocs(q)
   var ret: Item[] = [];
   docs.forEach(doc => ret.push(doc.data() as Item))
