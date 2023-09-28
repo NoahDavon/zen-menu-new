@@ -13,7 +13,7 @@ interface Props {
 const ProductCard: FunctionComponent<Props> = ({menu = false, item}) => {
     const {onOpen, onClose, isOpen} = useDisclosure();
     return (<> 
-        {!menu?<Card onClick={onOpen} className=" mx-4 my-4 rounded-2xl justify-end flex-shrink-0 w-60 h-80 bg-cover bg-center" backgroundImage={`/ProductImages/${item.Name}.jpg`}>
+        {!menu?<Card onClick={onOpen} className=" mx-4 my-4 rounded-2xl justify-end flex-shrink-0 w-60 h-80 bg-cover bg-center snap-center" backgroundImage={`/ProductImages/${item.Name}.jpg`}>
             <Card className="text-black bg-white font-sans items-center rounded-2xl m-2 p-2">
                 <Flex color={"#BC5F00"} className="pt-2 text-base font-normal w-[100%]">
                         <Text fontSize='smaller'>{item.Name}</Text>

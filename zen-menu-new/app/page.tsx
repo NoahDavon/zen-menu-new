@@ -33,7 +33,7 @@ export default function Home() {
       <Header name={name}/>
       <SearchBar setSearchResults={setSearchResults}/>
       {searchResults.length===0?categories.length>0?
-      <Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
+      <Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0 overflow-x-clip'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4 mb-0'>
           {categories.map(category =>
             <Tab fontSize='xs' className=' border flex-shrink-0 border-orange-200 m-0.5 shadow text-xs'>{category}</Tab>)}
