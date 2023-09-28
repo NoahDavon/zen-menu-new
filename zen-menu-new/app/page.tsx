@@ -25,7 +25,7 @@ export default function Home() {
           <ModalBody backgroundImage='Rectangle.png' className='flex flex-col w-full items-center bg-cover bg-center justify-evenly grow-0'>
             <Image src='zen.png' className=' h-80 w-80'/>
             <Text className='font-sans'>Please enter your name:</Text>
-            <Input onChange={(e)=> {setName(e.target.value)}} focusBorderColor='orange.300' fontFamily='sans-serif'/>
+            <Input onChange={(e)=> {setName(e.target.value)}} focusBorderColor='orange.300' onKeyDown={(e)=> {if(e.key ==="Enter") onClose()}} fontFamily='sans-serif'/>
             <Button className='my-2' onClick={onClose} isDisabled={name===''} variant='outline' colorScheme='orange'>Enter</Button>
           </ModalBody>
         </ModalContent>
