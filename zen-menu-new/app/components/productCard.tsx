@@ -25,7 +25,7 @@ const ProductCard: FunctionComponent<Props> = ({menu = false, item}) => {
             </Card>
         </Card> :
         <Card onClick={onOpen} flexDirection='row' className='rounded-2xl aspect-[4/1] w-full my-3 h-28'>
-            <Image src={`/ProductImages/${item.Name}.jpg`} fallbackSrc='/zen.png' className='w-3/12 object-cover rounded-md shrink-0'/>
+            <Image src={`/ProductImages/${item.Name}.jpg`} fallbackSrc='zen.png' className='w-3/12 object-cover rounded-md shrink-0'/>
             <Stack spacing='0.1rem' className='p-2'>
                 <Text color={"#BC5F00"} className="text-sm font-normal font-sans ">{item.Name}</Text>
                 <Text noOfLines={2} size='sm' className=' text-xs font-sans'>{item.description??''}</Text>

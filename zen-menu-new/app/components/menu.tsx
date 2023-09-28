@@ -26,7 +26,7 @@ export default function Menu({category, searchItems}: Props) {
     {getItems(category).then((items) => {setItems(items)})}
   }, [searchItems])
   return (
-    <Box className='flex items-center flex-col overflow-x-clip w-full mx-3'>
+    <Box className='flex items-center flex-col overflow-x-clip w-[95vw] mx-3'>
         <BestSellers/>
         {items.map(item => 
           <ProductCard item={item} menu/>
