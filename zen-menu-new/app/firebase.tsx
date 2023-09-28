@@ -68,7 +68,8 @@ export async function getOffers() : Promise<Offer[]>{
 
 export async function getAllItems() : Promise<Offer[]>{
   const ref = collection(getFirestore(app), 'Items');
-  const docs = await getDocs(ref);
+  const q = query(ref, where('isAvailable', '==', true))
+  const docs = await getDocs(q);
   var ret: Offer[] = [];
   docs.forEach(doc => ret.push(doc.data() as Offer))
   return ret;
