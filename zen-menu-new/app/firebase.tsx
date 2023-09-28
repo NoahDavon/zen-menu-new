@@ -5,6 +5,7 @@ import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, addDoc, collection,
 import { Item } from "./components/menu";
 import { Option } from "./components/productDetails";
 import { Order } from "./orders/page";
+import { Offer } from "./components/bestSellers";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -47,20 +48,29 @@ export async function getCategories(): Promise<string[]>{
   return ret;
 }
 
-export async function getItems(category: string) : Promise<Item[]>{
+export async function getItems(category: string) : Promise<Offer[]>{
   const ref = collection(getFirestore(app), 'Items');
   const q = query(ref, where('Category', '==', category), where('isAvailable', '==', true))
   const docs = await getDocs(q)
-  var ret: Item[] = [];
-  docs.forEach(doc => ret.push(doc.data() as Item))
+  var ret: Offer[] = [];
+  docs.forEach(doc => ret.push(doc.data() as Offer))
   return ret;
 }
 
-export async function getAllItems() : Promise<Item[]>{
+export async function getOffers() : Promise<Offer[]>{
+  const ref = collection(getFirestore(app), 'Items');
+  const q = query(ref, where('Category', '==', "Offers"))
+  const docs = await getDocs(q)
+  var ret: Offer[] = [];
+  docs.forEach(doc => ret.push(doc.data() as Offer))
+  return ret;
+}
+
+export async function getAllItems() : Promise<Offer[]>{
   const ref = collection(getFirestore(app), 'Items');
   const docs = await getDocs(ref);
-  var ret: Item[] = [];
-  docs.forEach(doc => ret.push(doc.data() as Item))
+  var ret: Offer[] = [];
+  docs.forEach(doc => ret.push(doc.data() as Offer))
   return ret;
 }
 

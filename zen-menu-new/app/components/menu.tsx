@@ -2,12 +2,12 @@
 import { Box } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import ProductCard from './productCard'
-import BestSellers from './bestSellers'
+import BestSellers, { Offer } from './bestSellers'
 import { getItems } from '../firebase'
 
 type Props = {
   category?: string
-  searchItems?: Item[];
+  searchItems?: Offer[];
 }
 
 export interface Item {
@@ -19,7 +19,7 @@ export interface Item {
 }
 
 export default function Menu({category, searchItems}: Props) {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Offer[]>([]);
   useEffect(()=>{
     if(!category) setItems(searchItems?? []);
     else 

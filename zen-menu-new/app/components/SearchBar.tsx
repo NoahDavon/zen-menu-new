@@ -5,13 +5,14 @@ import Fuse from 'fuse.js'
 import { Item } from './menu'
 import { getAllItems } from '../firebase'
 import { SearchIcon } from '@chakra-ui/icons'
+import { Offer } from './bestSellers'
 
 type Props = {
-    setSearchResults: React.Dispatch<React.SetStateAction<Item[]>>
+    setSearchResults: React.Dispatch<React.SetStateAction<Offer[]>>
 }
 
 export default function SearchBar({setSearchResults}: Props) {
-    const [allItems, setAllItems] = useState<Item[]>([]);
+    const [allItems, setAllItems] = useState<Offer[]>([]);
     useEffect(()=>{
         getAllItems().then((i)=> setAllItems(i));
     }, [])

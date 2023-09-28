@@ -4,20 +4,22 @@ import { FunctionComponent } from 'react';
 import { Button, Card, Flex, Image, Spacer, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import ProductDetails from './productDetails';
 import { Item } from './menu';
+import { Offer } from './bestSellers';
 interface Props {
     menu?: boolean;
-    item: Item;
+    item: Offer;
 }
  
 const ProductCard: FunctionComponent<Props> = ({menu = false, item}) => {
     const {onOpen, onClose, isOpen} = useDisclosure();
     return (<> 
-        {!menu?<Card onClick={onOpen} className=" mx-4 my-4 rounded-2xl justify-end flex-shrink-0 w-52 h-80 bg-cover bg-center" backgroundImage='/ProductImages/Cappuccino_at_Sightglass_Coffee.jpg'>
+        {!menu?<Card onClick={onOpen} className=" mx-4 my-4 rounded-2xl justify-end flex-shrink-0 w-52 h-80 bg-cover bg-center" backgroundImage={`/ProductImages/${item.Name}.jpg`}>
             <Card className="text-black bg-white font-sans items-center rounded-2xl m-2 p-2">
                 <Flex color={"#BC5F00"} className="pt-2 text-base font-normal w-[100%]">
-                        <Text>{item.Name}</Text>
+                        <Text fontSize='smaller'>{item.Name}</Text>
                         <Spacer/>
-                        <Text>{item.Price} LE</Text>
+                        <Text fontSize='smaller' textDecor='line-through' color='gray.500'>{item.Previous}</Text>
+                        <Text fontSize='smaller'>{item.Price} LE</Text>
                 </Flex>
                 <Text noOfLines={2} size='sm' className='text-xs mx-2 text-left'>{item.description??''}</Text>           
             </Card>

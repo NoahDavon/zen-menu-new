@@ -1,25 +1,27 @@
 import { Box, Heading } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCard from './productCard'
+import { Item } from './menu'
+import { getItems, getOffers } from '../firebase'
 
 type Props = {
     category?: string
 }
 
+export interface Offer extends Item {
+  Previous: number
+}
 export default function BestSellers({}: Props) {
+  const [offers, setOffers] = useState<Offer[]>([]);
+  useEffect(()=>{
+    getOffers().then(items => setOffers(items));
+  },[])
   return (
     <div className='w-full'>
-        {/* <Heading size='md'>Best Sellers</Heading>
-        <Box className='flex flex-row w-full overflow-x-scroll'>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-        </Box> */}
+      <Heading size='md'>Offer</Heading>
+      <Box className='flex flex-row w-[100vw] overflow-x-scroll'>
+        {offers.map(item=> <ProductCard item={item}/>)}
+      </Box>
     </div>
   )
 }

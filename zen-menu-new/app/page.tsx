@@ -6,8 +6,9 @@ import {getCategories} from './firebase';
 import { useEffect, useState } from 'react'
 import { CartProvider } from 'react-use-cart';
 import SearchBar from './components/SearchBar';
+import { Offer } from './components/bestSellers';
 export default function Home() {
-  const [searchResults, setSearchResults] = useState<Item[]>([]);
+  const [searchResults, setSearchResults] = useState<Offer[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(()=>{
     onOpen();
@@ -31,7 +32,8 @@ export default function Home() {
       </Modal>
       <Header name={name}/>
       <SearchBar setSearchResults={setSearchResults}/>
-      {searchResults.length===0?categories.length>0?<Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
+      {searchResults.length===0?categories.length>0?
+      <Tabs variant="soft-rounded" colorScheme='orange' className=' basis-0 grow min-h-0'>
         <TabList className=' max-w-[100vw] px-3 overflow-x-scroll m-4 mb-0'>
           {categories.map(category =>
             <Tab fontSize='xs' className=' border flex-shrink-0 border-orange-200 m-0.5 shadow text-xs'>{category}</Tab>)}
