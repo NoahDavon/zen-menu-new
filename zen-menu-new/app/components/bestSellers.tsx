@@ -18,7 +18,7 @@ export default function BestSellers({}: Props) {
   },[])
   return (
     <div className='w-full'>
-      <Heading size='md'>Offer</Heading>
+      <Heading size='md' textColor='orange.500'>Offers & Bundles</Heading>
       <Box className='flex flex-row w-[100vw] overflow-x-scroll'>
         {offers.map(item=> <ProductCard item={item}/>)}
       </Box>
