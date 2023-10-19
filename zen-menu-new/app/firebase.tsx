@@ -107,11 +107,12 @@ export function setOrder(order: {Name: string, items: any[], total: number}){
   addDoc(collection(getFirestore(app), 'Orders'), order)
 }
 
-export function unSubscribeToDB(setter: React.Dispatch<React.SetStateAction<Order[]>>){
+export function unSubscribeToDB(setter: React.Dispatch<React.SetStateAction<Order[]>>, setPlayAudio: React.Dispatch<React.SetStateAction<boolean>>){
   return onSnapshot(collection(getFirestore(app), 'Orders'), snapshot =>{
     var orders : Order[] = [];
     snapshot.forEach((doc)=> orders.push({...doc.data(),id: doc.id} as Order));
     setter(orders);
+    if(snapshot.docChanges().some((c) => c.newIndex !== -1)) setPlayAudio(true);
   })
 }
 

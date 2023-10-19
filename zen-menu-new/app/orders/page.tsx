@@ -13,10 +13,26 @@ export interface Order{
 }
 export default function Orders({}: Props) {
     const [orders, setOrders] = useState<Order[]>([]);
+    const [audio, setAudio] = useState<HTMLAudioElement|null>(null)
+    const [playAudio,setPlayAudio] = useState<boolean>(false);
+    useEffect(() => {
+        console.log("Rendered again, audio");
+        setAudio(new Audio('https://mingosounds.com/wp-content/uploads/2021/06/Bleep-SoundBible.com-1927126940.mp3')) // only call client
+
+    }, [])
+
     useEffect(()=>{
-        var unsub = unSubscribeToDB(setOrders);
+        var unsub = unSubscribeToDB(setOrders, setPlayAudio);
         return unsub;
     },[])
+
+    useEffect(()=>{
+        if(audio && playAudio){
+            audio.play();
+            setPlayAudio(false);
+        }
+    },[playAudio, audio])
+
   return (
     <Flex className=' flex-wrap'>
         {orders?.map(order=>
