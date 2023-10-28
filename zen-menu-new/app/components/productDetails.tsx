@@ -84,7 +84,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
                     Object.values(selectedOptions).forEach(optionGroup => optionGroup.forEach(option => ops.push(option.Name)))
                     ops.forEach((option) => id += option);
                     id += notes
-                    var cartItem : cartItem = {id: id, Name: Item.Name, Options:ops ??[], price: finalPrice, Notes: notes}
+                    var cartItem : cartItem = {id: id, Name: Item.Name, Options:ops ??[], price: finalPrice/count, Notes: notes}
                     addItem(cartItem, count);
                     setSelectedOptions([] as {});
                     onClose();
