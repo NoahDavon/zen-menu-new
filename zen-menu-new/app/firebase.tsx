@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
-import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"; 
+import { DocumentData, Query, QueryDocumentSnapshot, QuerySnapshot, addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"; 
 import { Item } from "./components/menu";
 import { Option } from "./components/productDetails";
 import { Order } from "./orders/page";
@@ -66,9 +66,12 @@ export async function getOffers() : Promise<Offer[]>{
   return ret;
 }
 
-export async function getAllItems() : Promise<Offer[]>{
+export async function getAllItems(filter: boolean = true) : Promise<Offer[]>{
   const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('isAvailable', '==', true))
+  var q : Query<DocumentData, DocumentData>;
+  
+  if(filter) q = query(ref, where('isAvailable', '==', true));
+  else q = query(ref);
   const docs = await getDocs(q);
   var ret: Offer[] = [];
   docs.forEach(doc => ret.push(doc.data() as Offer))

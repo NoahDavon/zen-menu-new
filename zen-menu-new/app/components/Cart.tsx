@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect } from 'react'
-import { IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading, Avatar, AvatarBadge, useToast } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { IconButton, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Stack, ModalCloseButton, Heading, Avatar, AvatarBadge, useToast, Tooltip } from '@chakra-ui/react'
 import {HiOutlineShoppingCart} from 'react-icons/hi2';
 import CartCard from './CartCard';
 import { useCart } from 'react-use-cart';
@@ -13,13 +13,23 @@ export default function Cart() {
     useEffect(()=>{
         if(isEmpty) onClose;
     },[isEmpty])
+    function clickOnCart(){
+        onOpen();
+        toast({
+            description: `Your cart is empty! :(`,
+            duration: 1000,
+            isClosable: false,
+            colorScheme: 'orange',
+            position: 'top-right',
+        })
+    }
   return (
     <div className='flex h-full'>
-        <IconButton onClick={onOpen} variant='ghost' aria-label='Cart' icon={
-            <Avatar className='shadow-md' bg='orange.500' icon={<HiOutlineShoppingCart/>}>
-                {!isEmpty?<AvatarBadge bg='orange.300' boxSize='1.25rem' fontSize='sm'>{totalItems}</AvatarBadge>:<></>}
-            </Avatar>
-        }/>
+            <IconButton onClick={clickOnCart} variant='ghost' aria-label='Cart' icon={
+                <Avatar className='shadow-md' bg='orange.500' icon={<HiOutlineShoppingCart/>}>
+                    {!isEmpty?<AvatarBadge bg='orange.300' boxSize='1.25rem' fontSize='sm'>{totalItems}</AvatarBadge>:<></>}
+                </Avatar>
+            }/>
         {/* <div className='self-start rounded-full text-xs border border-orange-300 font-semibold text-orange-600 h-fit p-1 aspect-square'>3</div> */}
         <Modal size='full' isOpen={isOpen && !isEmpty} onClose={onClose}>
             <ModalOverlay/>
