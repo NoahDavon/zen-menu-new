@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { CartProvider } from 'react-use-cart';
 import SearchBar from './components/SearchBar';
 import { Offer } from './components/bestSellers';
+import StartupModal from './components/StartupModal';
 export default function Home() {
   const [searchResults, setSearchResults] = useState<Offer[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -19,17 +20,7 @@ export default function Home() {
   return (
     <CartProvider>
     <main className="flex h-[100vh] flex-col items-center px-7 pt-10 font-sans overflow-x-clip">
-      <Modal size='6xl' isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} closeOnEsc={false}>
-        <ModalOverlay/>
-        <ModalContent>
-          <ModalBody backgroundImage='Rectangle.png' className='flex flex-col w-full items-center bg-cover bg-center justify-evenly grow-0'>
-            <Image src='zen.png' className=' h-80 w-80'/>
-            <Text className='font-sans'>Please enter your name:</Text>
-            <Input onChange={(e)=> {setName(e.target.value)}} focusBorderColor='orange.300' onKeyDown={(e)=> {if(e.key ==="Enter") onClose()}} fontFamily='sans-serif'/>
-            <Button className='my-2' onClick={onClose} isDisabled={name===''} variant='outline' colorScheme='orange'>Enter</Button>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <StartupModal isOpen={isOpen} onClose={onClose} setName={setName} name={name}/>
       <Header name={name}/>
       <SearchBar setSearchResults={setSearchResults}/>
       {searchResults.length===0?categories.length>0?
