@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { CartProvider } from 'react-use-cart';
 import SearchBar from './components/SearchBar';
 import { Offer } from './components/bestSellers';
+import Link from 'next/link';
 export default function Home() {
   const [searchResults, setSearchResults] = useState<Offer[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -51,6 +52,10 @@ export default function Home() {
       <Menu searchItems={searchResults}/>
             
           }
+      <Box margin={"1rem"}></Box>
+      <Box padding={"0.5rem"}>
+          <Link href={"/aboutUs"}>About Us</Link>
+    </Box>
     </main>
     </CartProvider>
   )
