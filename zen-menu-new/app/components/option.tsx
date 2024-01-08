@@ -1,11 +1,11 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import SelectButton from './selectButton';
-import { Option } from './productDetails';
+import { Addition, Option } from './productDetails';
 
 type Props = {
     Name: string,
-    options: {[key: string]: number};
+    options: Addition[]
     isOption?: Boolean;
     setSelectedOptions: React.Dispatch<React.SetStateAction<{[key: string]: {Name: string, price: number}[]}>>;
     selectedOptions: {[key: string]: {Name: string, price: number}[]};
@@ -14,7 +14,7 @@ type Props = {
 
 
 export default function Option({Name, options, isOption=false, setSelectedOptions, selectedOptions}: Props) {
-    const [selected, setSelected] = useState<{[key: string]: Boolean}>(!isOption? {} : {[Object.keys(options)[Object.keys(options).findIndex(o => options[o]==0)]]: true});
+    const [selected, setSelected] = useState<{[key: string]: Boolean}>(!isOption? {} : {[options.find(x => x.Price==0)?.Name??""]: true});
     const handleClick = (x: string) => {
         isOption? setSelected({[x]:(true)}):setSelected({...selected, [x]: (!selected[x]??true)})
     }
@@ -22,7 +22,7 @@ export default function Option({Name, options, isOption=false, setSelectedOption
         var sum: {Name: string, price: number}[] = [];
         Object.keys(selected).forEach((addition)=> {
             if(selected[addition]){
-                sum.push({Name: addition, price: options[addition]})
+                sum.push({Name: addition, price: options.find(x => x.Name == addition)?.Price?? 0})
             }
         });
         setSelectedOptions({...selectedOptions, [Name]: sum})

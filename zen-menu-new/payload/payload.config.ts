@@ -50,6 +50,11 @@ const Items : CollectionConfig = {
   },
   fields: [
     {
+      name: "isAvailable",
+      type: "checkbox",
+      defaultValue: true
+    },
+    {
       name: "Category",
       type: "relationship",
       relationTo: "categories",

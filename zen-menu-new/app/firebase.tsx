@@ -6,7 +6,8 @@ import { Item } from "./components/menu";
 import { Option } from "./components/productDetails";
 import { Order } from "./orders/page";
 import { Offer } from "./components/bestSellers";
-
+import getPayloadClient from "@/payload/payloadClient";
+import qs from 'qs'
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -40,71 +41,76 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export async function getCategories(): Promise<string[]>{
-  const ref = collection(getFirestore(app), 'Categories');
-  const q = query(ref, orderBy('index'))
-  const docs = await getDocs(q)
-  var ret: string[] = [];
-  docs.forEach(doc => ret.push(doc.id))
-  return ret;
+  const payload = await getPayloadClient();
+  const response = await payload.find({
+    collection: "categories",
+    limit: 1000
+  });
+  return response.docs.map(r => r.Name) as unknown as string[];
 }
 
 export async function getItems(category: string) : Promise<Offer[]>{
-  const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('Category', '==', category), where('isAvailable', '==', true))
-  const docs = await getDocs(q)
-  var ret: Offer[] = [];
-  docs.forEach(doc => ret.push(doc.data() as Offer))
-  return ret;
+  const payload = await getPayloadClient();
+  const queryString = qs.stringify({
+    where:{
+      and: [
+        {
+          'Category.Name': {
+            equals: category
+          }
+        },
+        {
+          isAvailable:{
+            equals: true
+          }
+        }
+      ]
+    }
+  }, {addQueryPrefix: true})
+  const response = await payload.find({
+    collection: "items",
+    limit: 1000,
+    where:{
+      and: [
+        {
+          'Category.Name': {
+            equals: category
+          }
+        },
+        {
+          isAvailable:{
+            equals: true
+          }
+        }
+      ]
+    }
+  });
+  return response.docs.map(x => {return {...x, Category: (x as any).Category.Name}}) as unknown as Offer[];
 }
 
 export async function getOffers() : Promise<Offer[]>{
-  const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('Category', '==', "Offers"))
-  const docs = await getDocs(q)
-  var ret: Offer[] = [];
-  docs.forEach(doc => ret.push(doc.data() as Offer))
-  return ret;
+  const payload = await getPayloadClient();
+  const response = await payload.find({
+    limit: 10,
+    collection: "items",
+    where: {
+      isPromo:{
+        equals: true
+      }
+    }
+  })
+  return response.docs.map(x => {return {...x, Category: (x as any).Category.Name}}) as unknown as Offer[];
 }
 
 export async function getAllItems(filter: boolean = true) : Promise<Offer[]>{
-  const ref = collection(getFirestore(app), 'Items');
-  var q : Query<DocumentData, DocumentData>;
-  
-  if(filter) q = query(ref, where('isAvailable', '==', true));
-  else q = query(ref);
-  const docs = await getDocs(q);
-  var ret: Offer[] = [];
-  docs.forEach(doc => ret.push(doc.data() as Offer))
-  return ret;
+  const payload = await getPayloadClient();
+  const response = await payload.find({
+    collection: "items",
+    limit: 1000,
+  })
+  return response.docs.map(x => {return {...x, Category: (x as any).Category.Name}}) as unknown as Offer[];
 }
 
-export async function getItemDetails(ItemName: string) : Promise<{Price: number, isAvailable: boolean}>{
-  const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('Name', '==', ItemName))
-  const docs = await getDocs(q)
-  var ret : QueryDocumentSnapshot<DocumentData, DocumentData>[] = [];
-  docs.forEach(doc => ret.push(doc))
-  return {Price: ret[0].data().Price, isAvailable: ret[0].data().isAvailable?? false};
-}
-export async function updateItemDetails(ItemName: string, Price: number, isAvailable: boolean){
-  const ref = collection(getFirestore(app), 'Items');
-  const q = query(ref, where('Name', '==', ItemName))
-  const docs = await getDocs(q)
-  var id: string = '';
-  docs.forEach(doc => id = doc.id)
-  updateDoc(doc(getFirestore(app), "Items", id), {Price: Price, isAvailable: isAvailable})
-}
-export async function getAdditions(Item:Item) {
-  const ref = collection(getFirestore(app), 'Additions');
-  var ret: Option[] = []
-  const promises =(Item.Additions as string[]).map(async (addition)=>{
-    const q = query(ref, where('Name', '==', addition))
-    await getDocs(q).then((docs) =>docs.forEach(doc => ret.push(doc.data() as Option)));
-  })
-  await Promise.all(promises);
-  
-  return ret;
-}
 
 export function setOrder(order: {Name: string, items: any[], total: number}){
   addDoc(collection(getFirestore(app), 'Orders'), order)

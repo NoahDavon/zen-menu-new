@@ -5,12 +5,16 @@ import React, { useEffect, useState } from 'react'
 import Option from './option';
 import AdditionalNotes from './AdditionalNotes';
 import { Item } from './menu';
-import { getAdditions } from '../firebase';
 import { useCart } from 'react-use-cart';
 export interface Option{
   Name: string,
-  Options: {[key:string]: number},
+  Options: Addition[],
   isOption?:boolean
+}
+
+export interface Addition{
+  Name: string,
+  Price: number
 }
 
 export interface cartItem{
@@ -51,7 +55,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
     setNotes(e.target.value);
   }
   useEffect(()=>{
-    if(Item.Additions)getAdditions(Item as Item).then(adds => setAdditions(adds))
+    if(Item.Additions) setAdditions(Item.Additions)
   },[])
   useEffect(()=>{
     var total = Item.Price;
@@ -72,7 +76,7 @@ export default function ProductDetails({onOpen, onClose, isOpen, Item}: Props) {
               <Stack>
                 <Counter/>
                 <Text className='p-4 text-left font-sans w-full'>
-                  {Item?.description}
+                  {Item?.Description}
                 </Text>
                 {additions.map((addition)=>
                 <Option Name={addition.Name} isOption={addition.isOption} options={addition.Options} setSelectedOptions={setSelectedOptions} selectedOptions={selectedOptions}/>)}

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from './productCard'
 import BestSellers, { Offer } from './bestSellers'
 import { getItems } from '../firebase'
+import { Option } from './productDetails'
 
 type Props = {
   category?: string
@@ -14,8 +15,8 @@ export interface Item {
   Name: string,
   Category: string,
   Price: number,
-  description?: string,
-  Additions?: string[]
+  Description?: string,
+  Additions?: Option[],
 }
 
 export default function Menu({category, searchItems}: Props) {

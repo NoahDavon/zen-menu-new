@@ -9,7 +9,7 @@ type Props = {
 }
 
 export interface Offer extends Item {
-  Previous: number
+  PromoPrice: number
 }
 export default function BestSellers({}: Props) {
   const [offers, setOffers] = useState<Offer[]>([]);
